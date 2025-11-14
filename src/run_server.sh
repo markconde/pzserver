@@ -136,9 +136,14 @@ set_variables() {
     ADMIN_PASSWORD="${ADMIN_PASSWORD:-changeme}"
     AUTOSAVE_INTERVAL="${AUTOSAVE_INTERVAL:-15}"
 
-    BIND_IP="${BIND_IP:-0.0.0.0}"
-    mkdir -p "${CONFIG_DIR}"
-    
+    # Decide what IP the server binds to
+    # If BIND_IP is not set or is 0.0.0.0, pick the first IP from hostname -I
+    if [[ -z "${BIND_IP:-}" ]] || [[ "${BIND_IP}" == "0.0.0.0" ]]; then
+        ips=($(hostname -I))
+        BIND_IP="${ips[0]}"
+    fi
+
+    mkdir -p "${CONFIG_DIR}"    
     DEFAULT_PORT="${DEFAULT_PORT:-16261}"
     UDP_PORT="${UDP_PORT:-16262}"
 
