@@ -1,0 +1,58 @@
+zomboid-data/
+Zomboid/
+*/Zomboid/
+
+# Ignore SteamCMD downloaded files if they ever appear in the repo by accident
+steamcmd/
+steam/
+Steam/
+SteamApps/
+Steam/logs/
+Steam/config/
+*.steam_startup*
+
+# Ignore any generated configs copied out of the container
+Server/
+SandboxVars.lua
+*.ini
+*.txt
+*.bin
+
+# Logs
+logs/
+*.log
+*.stderr.txt
+*.stdout.txt
+
+# Python cache
+__pycache__/
+*.pyc
+
+# MacOS clutter
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# VSCode/IDE files
+.vscode/
+.idea/
+*.swp
+*~
+
+# Docker build artifacts
+*.tar
+*.tar.gz
+docker-compose.override.yml
+
+# Security: prevent secrets from being committed
+.env
+*.env
+secrets/
+secret.txt
+
+# Node/npm clutter (if you ever add tooling)
+node_modules/
+npm-debug.log
+
+# Git metadata backups
+*.orig

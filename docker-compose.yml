@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  pz-server:
+    image: yourname/pzserver:latest  # or whatever you tag
+    container_name: pzserver
+    restart: unless-stopped
+
+    # Map the Zomboid data dir to host for persistence
+    volumes:
+      - ./zomboid-data:/home/steam/Zomboid
+
+    # Game ports (adjust as needed)
+    ports:
+      - "16261:16261/udp"
+      - "16262-16272:16262-16272/udp"
+      # RCON (optional, only if you want external RCON access)
+      - "27015:27015/tcp"
+
+    environment:
+      # Core server
+      SERVER_NAME: "MyZomboidServer"
+      ADMIN_PASSWORD: "changeme"
+      MAX_PLAYERS: "16"
+      GAME_VERSION: "public"
+      AUTO_UPDATE: "true"
+
+      # RCON
+      RCON_PORT: "27015"
+      RCON_PASSWORD: "changeme_rcon"
+
+      # Common config via env mapping → PZ_* automatically
+      AUTOSAVE_INTERVAL: "15"
+      MAP_NAMES: "Muldraugh, KY"
+      MOD_WORKSHOP_IDS: ""
+      MOD_NAMES: ""
+      PAUSE_ON_EMPTY: "true"
+      PUBLIC_SERVER: "true"
+
+      # Optional JVM tuning
+      MAX_RAM: "4096m"
+      GC_CONFIG: "ZGC"
+
+      # Extra PZ_* specific overrides if you want:
+      # PZ_PVP: "false"
+      # PZ_GlobalChat: "true"
+      # PZ_PublicDescription: "Chill co-op server"
