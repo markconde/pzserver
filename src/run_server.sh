@@ -138,8 +138,7 @@ set_variables() {
 
     BIND_IP="${BIND_IP:-0.0.0.0}"
     mkdir -p "${CONFIG_DIR}"
-    echo "${BIND_IP}" > "${CONFIG_DIR}/ip.txt"
-
+    
     DEFAULT_PORT="${DEFAULT_PORT:-16261}"
     UDP_PORT="${UDP_PORT:-16262}"
 
