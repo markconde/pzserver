@@ -83,6 +83,7 @@ apply_config_from_env() {
     export PZ_Map PZ_WorkshopItems PZ_Mods PZ_PauseEmpty PZ_Open
     export PZ_PublicName PZ_Password PZ_RCONPort PZ_RCONPassword
 
+    mkdir -p "$(dirname "${SERVER_CONFIG}")"
     python3 "${EDIT_CONFIG_SCRIPT}" --bulk-from-env "${SERVER_CONFIG}"
 
     printf "\n### Applying JVM configuration (MAX_RAM, GC_CONFIG)...\n"
